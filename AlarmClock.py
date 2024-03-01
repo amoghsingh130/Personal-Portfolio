@@ -1,5 +1,4 @@
 from appJar import gui
-from PIL import Image, ImageTk
 from time import sleep, time, ctime
 
 app = gui()
@@ -7,7 +6,8 @@ app = gui()
 curr_time = ctime(time()).split()[3]
 window_width = 600
 window_height = 400
-timer_running = True
+global timer_running 
+
 
 app.setSize(window_width, window_height)
 
@@ -18,8 +18,10 @@ def update_time():
   app.setLabel("title", f"Time: {curr_time}")
   app.after(1000, update_time)
 
-# def stop_timer():
-#   app.setLabel("timer_time", curr_time)
+def stop_timer():
+  if timer_running:
+    app.setLabel("timer_time", curr_time)
+    timer_running = False
   
 
 def start_timer():
@@ -39,7 +41,6 @@ def start_timer():
     seconds = f"{1+int(seconds)}"
     app.setLabel("timer_time", f"{hours}:{minutes}:{seconds}")
     curr_label = app.getLabel("timer_time")
-    app.addButton("Stop", running = False)
     app.after(1000, start_timer)
 
 app.setFont(30)
@@ -49,6 +50,7 @@ update_time()
 app.addCanvas("canvas")
 
 app.addButton("Start Timer", start_timer)
+app.addButton("Stop Timer", stop_timer)
 app.addLabel("timer_time", "00:00:00")
 
 app.go()
