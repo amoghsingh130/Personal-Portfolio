@@ -1,6 +1,6 @@
 
 ```mermaid
-%%{init: {'theme': '', 'themeVariables': { 'fontSize': '100px', 'fontFamily': 'Inter'}}}%%
+%%{init: {'theme': '', 'themeVariables': { 'fontSize': '150px', 'fontFamily': 'Inter'}}}%%
 sequenceDiagram
   participant S as Start
   participant DTA as Data Acquisition
